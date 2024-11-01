@@ -1,27 +1,27 @@
+import { styles } from '@/constants/App.style';
+import React from 'react';
 import { Image, StyleSheet, Platform, View, Text } from 'react-native';
 
-import { SafeAreaProvider,SafeAreaView} from "react-native-safe-area-context"
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 
 export default function HomeScreen() {
   return (
-    <SafeAreaProvider style={styles.container}>
+    <>
+      <SafeAreaProvider >
 
-        <SafeAreaView>
-            <Text style={styles.text}>Hello world</Text>
+        <SafeAreaView style={styles.app}>
+          <View style={styles.header}>
+            <Text>Header</Text>
+          </View>
+          <View style={styles.body}>
+            <Text>Body</Text>
+          </View>
+          
         </SafeAreaView>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+      <View style={styles.footer}>
+            <Text>Footer</Text>
+          </View>
+    </>
   );
 }
-const styles = StyleSheet.create({
-    container:{
-      display:"flex",
-      justifyContent:"center",
-      alignItems:"center",
-      backgroundColor:"black"
-    },
-    text:{
-      color:"white",
-      fontSize:40
-    }
-
-})
