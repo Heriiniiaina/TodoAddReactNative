@@ -1,3 +1,4 @@
+import Header from '@/components/Header';
 import { styles } from '@/constants/App.style';
 import React from 'react';
 import { Image, StyleSheet, Platform, View, Text } from 'react-native';
@@ -11,7 +12,7 @@ export default function HomeScreen() {
 
         <SafeAreaView style={styles.app}>
           <View style={styles.header}>
-            <Text>Header</Text>
+              <Header/>
           </View>
           <View style={styles.body}>
             <Text>Body</Text>

@@ -6,15 +6,15 @@ export const styles = StyleSheet.create({
         backgroundColor:"#F9F9F9"
     },
     header:{
-        flex:1,
-        backgroundColor:"green"
+        flex:1
+      
     },
     body:{
-        flex:5,
-        backgroundColor:"red"
+        flex:5
+       
     },
     footer:{
         height:60,
-        backgroundColor:"blue"
+       
     }
 })
