@@ -35,7 +35,7 @@ type Todo = {
       setTodoLIst(updatedList)
   }
   const renderTodo = ()=>{
-    return todoList.map((todo)=><View style={styles.cardTodo}><Card onPress={updateTodo} todo={todo}/></View>)
+    return todoList.map((todo)=><View key={todo.id} style={styles.cardTodo}><Card onPress={updateTodo} todo={todo}/></View>)
  }
   return (
     <>
