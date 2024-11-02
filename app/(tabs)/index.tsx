@@ -1,3 +1,4 @@
+import ButtonAdd from '@/components/ButtonAdd/ButtonAdd';
 import Card from '@/components/Card/Card';
 import Header from '@/components/Header';
 import TabMenu from '@/components/TabMenu/TabMenu';
@@ -16,16 +17,7 @@ export default function HomeScreen() {
   }
   const [selectMenu, setMenuSelect] = useState<string>("all")
 
-  const [todoList, setTodoLIst] = useState<Todo[]>([
-    { id: 1, title: "Mangery", isCompleted: true },
-    { id: 2, title: "Mamany", isCompleted: false },
-    { id: 3, title: "Misasa", isCompleted: true },
-    { id: 4, title: "Micode", isCompleted: true },
-    { id: 5, title: "Manakorotana", isCompleted: false },
-    { id: 6, title: "Migafy", isCompleted: false },
-    { id: 7, title: "Mijery boruto", isCompleted: true },
-    { id: 8, title: "Misakafo", isCompleted: true },
-  ])
+  const [todoList, setTodoLIst] = useState<Todo[]>([])
 
   const getFilteredList =()=>{
       switch(selectMenu){
@@ -80,6 +72,7 @@ export default function HomeScreen() {
               {renderTodo()}
             </ScrollView>
           </View>
+          <ButtonAdd/>
 
         </SafeAreaView>
       </SafeAreaProvider>
