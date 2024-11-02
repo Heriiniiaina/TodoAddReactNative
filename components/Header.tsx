@@ -4,8 +4,8 @@ import { style } from './Header.style'
 import logo from "@/assets/images/logo.png"
 export default function Header() {
   return (
-    <View>
-        <Image style={style.img} source={logo}/>
+    <View style={style.logo}>
+        <Image style={style.img} source={logo} resizeMode='contain'/>
       <Text style={style.title}>Tu as des trucs à faire</Text>
     </View>
   )
