@@ -4,21 +4,22 @@ import Header from '@/components/Header';
 import TabMenu from '@/components/TabMenu/TabMenu';
 import { styles } from '@/constants/App.style';
 import React, { useState } from 'react';
+import Dialog from "react-native-dialog"
 import { Image, StyleSheet, Platform, View, Text, ScrollView, Alert } from 'react-native';
-
+import uuid from "react-native-uuid"
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 
 export default function HomeScreen() {
   type Todo = {
-    id: number,
+    id: string ,
     title: string,
     isCompleted: boolean
 
   }
   const [selectMenu, setMenuSelect] = useState<string>("all")
-
   const [todoList, setTodoLIst] = useState<Todo[]>([])
-
+  const [isAddTodo,setIsAddTodo] = useState<boolean>(false)
+  const [todo,setTodo]=useState<string>("")
   const getFilteredList =()=>{
       switch(selectMenu){
         case"all":
@@ -58,6 +59,18 @@ export default function HomeScreen() {
   const renderTodo = () => {
     return getFilteredList().map((todo) => <View key={todo.id} style={styles.cardTodo}><Card onLongPress={deleteTodo} onPress={updateTodo} todo={todo} /></View>)
   }
+  const ShowAddTodo = ()=>{
+      setIsAddTodo(true)
+  } 
+  const AddTodo = ()=>{
+      const newTodo = {
+        id: uuid.v4() as string,
+        title:todo,
+        isCompleted:false
+      }
+      setTodoLIst([...todoList,newTodo])
+      setIsAddTodo(false)
+  }
   return (
     <>
       <SafeAreaProvider >
@@ -72,13 +85,17 @@ export default function HomeScreen() {
               {renderTodo()}
             </ScrollView>
           </View>
-          <ButtonAdd/>
+          <ButtonAdd onPress={ShowAddTodo}/>
 
         </SafeAreaView>
       </SafeAreaProvider>
-      <View style={styles.footer}>
-        <TabMenu onPress={setMenuSelect} selectMenu={selectMenu} todoList={todoList} />
-      </View>
+      <TabMenu onPress={setMenuSelect} selectMenu={selectMenu} todoList={todoList} />
+      <Dialog.Container visible={isAddTodo} onBackdropPress={()=>setIsAddTodo(false)}>
+          <Dialog.Title>Créer une tache</Dialog.Title>
+          <Dialog.Description>Donner un nom à la nouvelle tache</Dialog.Description>
+          <Dialog.Input  onChangeText={setTodo}/>
+          <Dialog.Button label="Créer" onPress={AddTodo} />
+      </Dialog.Container>
     </>
   );
 }

@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { s } from './TabMenu.style'
 
 type Todo = {
-    id: number,
+    id: string,
     title: string,
     isCompleted: boolean
 }
