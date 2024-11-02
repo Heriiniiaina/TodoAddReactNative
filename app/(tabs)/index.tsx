@@ -7,14 +7,14 @@ import { Image, StyleSheet, Platform, View, Text } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 
 export default function HomeScreen() {
-  type Todo = {
+type Todo = {
     id:number,
     title:string,
     isCompleted:boolean
 
   }
   const todoList:Todo[] = [
-    { id:1,title:"Mangery",isCompleted:false  }
+    { id:1,title:"Mangery",isCompleted:true  }
   ]
   return (
     <>

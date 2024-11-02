@@ -15,8 +15,8 @@ interface todoProps extends TextInputProps {
 function Card({todo}:todoProps) {
   return (
     <TouchableOpacity style={style.card}>
-        <Text style={style.text}>{todo.title}</Text>
-        <Image style={style.img} source={checkImage}/>
+        <Text style={[style.text,todo.isCompleted && {textDecorationLine:"line-through"}]}>{todo.title}</Text>
+        {todo.isCompleted && <Image style={style.img} source={checkImage}/>}
     </TouchableOpacity>
   )
 }

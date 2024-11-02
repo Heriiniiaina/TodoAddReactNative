@@ -9,7 +9,15 @@ export const style = StyleSheet.create({
         alignItems:"center",
         justifyContent:"space-between",
         paddingHorizontal:20,
-        borderRadius:20
+        borderRadius:20,
+        shadowColor:"#000",
+        shadowOffset:{
+            width:0,
+            height:2
+        },
+        shadowOpacity:0.25,
+        shadowRadius:3.84,
+        elevation:5,
 
     },
     text:{
