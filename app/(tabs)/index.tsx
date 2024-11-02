@@ -1,8 +1,8 @@
 import Card from '@/components/Card/Card';
 import Header from '@/components/Header';
 import { styles } from '@/constants/App.style';
-import React from 'react';
-import { Image, StyleSheet, Platform, View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { Image, StyleSheet, Platform, View, Text, ScrollView } from 'react-native';
 
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 
@@ -13,9 +13,20 @@ type Todo = {
     isCompleted:boolean
 
   }
-  const todoList:Todo[] = [
-    { id:1,title:"Mangery",isCompleted:true  }
-  ]
+  const [todoList,setTodoLIst] = useState<Todo[]>([
+    { id:1,title:"Mangery",isCompleted:true  },
+    { id:2,title:"Mamany",isCompleted:false  },
+    { id:3,title:"Misasa",isCompleted:true  },
+    { id:4,title:"Micode",isCompleted:true  },
+    { id:5,title:"Manakorotana",isCompleted:false  },
+    { id:6,title:"Migafy",isCompleted:false  },
+    { id:7,title:"Mijery boruto",isCompleted:true  },
+    { id:8,title:"Misakafo",isCompleted:true  },
+  ])
+  const renderTodo = ()=>{
+     return todoList.map((todo)=><View style={styles.cardTodo}><Card todo={todo}/></View>)
+  }
+
   return (
     <>
       <SafeAreaProvider >
@@ -25,7 +36,10 @@ type Todo = {
               <Header/>
           </View>
           <View style={styles.body}>
-              <Card todo={todoList[0]}/>
+            <ScrollView>
+
+              {renderTodo()}
+            </ScrollView>
           </View>
           
         </SafeAreaView>

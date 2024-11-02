@@ -6,12 +6,16 @@ export const styles = StyleSheet.create({
         backgroundColor:"#F9F9F9",
         padding:10
     },
+    cardTodo:{
+        marginBottom:20
+    },
     header:{
         flex:1
       
     },
     body:{
-        flex:4
+        flex:4,
+      
        
     },
     footer:{
