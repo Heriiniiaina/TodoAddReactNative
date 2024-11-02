@@ -23,10 +23,20 @@ type Todo = {
     { id:7,title:"Mijery boruto",isCompleted:true  },
     { id:8,title:"Misakafo",isCompleted:true  },
   ])
-  const renderTodo = ()=>{
-     return todoList.map((todo)=><View style={styles.cardTodo}><Card todo={todo}/></View>)
+ 
+  const updateTodo = (todo:Todo)=>{
+      const updatedTodo = {
+        ...todo,
+        isCompleted: !todo.isCompleted
+      }
+      const todoIndex = todoList.findIndex((elm)=>elm.id == updatedTodo.id)
+      const updatedList = [...todoList]
+      updatedList[todoIndex] = updatedTodo
+      setTodoLIst(updatedList)
   }
-
+  const renderTodo = ()=>{
+    return todoList.map((todo)=><View style={styles.cardTodo}><Card onPress={updateTodo} todo={todo}/></View>)
+ }
   return (
     <>
       <SafeAreaProvider >

@@ -9,12 +9,13 @@ type Todo = {
     isCompleted:boolean
 
   }
-interface todoProps extends TextInputProps {
-    todo:Todo
+interface todoProps {
+    todo:Todo,
+    onPress:(todo:Todo) => void
 }
-function Card({todo}:todoProps) {
+function Card({todo,onPress}:todoProps) {
   return (
-    <TouchableOpacity style={style.card}>
+    <TouchableOpacity style={style.card} onPress={()=>onPress(todo)}>
         <Text style={[style.text,todo.isCompleted && {textDecorationLine:"line-through"}]}>{todo.title}</Text>
         {todo.isCompleted && <Image style={style.img} source={checkImage}/>}
     </TouchableOpacity>
