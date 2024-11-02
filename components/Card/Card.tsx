@@ -11,11 +11,12 @@ type Todo = {
   }
 interface todoProps {
     todo:Todo,
-    onPress:(todo:Todo) => void
+    onPress:(todo:Todo) => void,
+    onLongPress:(todo:Todo)=>void
 }
-function Card({todo,onPress}:todoProps) {
+function Card({todo,onPress,onLongPress}:todoProps) {
   return (
-    <TouchableOpacity style={style.card} onPress={()=>onPress(todo)}>
+    <TouchableOpacity style={style.card} onLongPress={()=>onLongPress(todo)} onPress={()=>onPress(todo)}>
         <Text style={[style.text,todo.isCompleted && {textDecorationLine:"line-through"}]}>{todo.title}</Text>
         {todo.isCompleted && <Image style={style.img} source={checkImage}/>}
     </TouchableOpacity>

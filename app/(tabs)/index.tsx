@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import TabMenu from '@/components/TabMenu/TabMenu';
 import { styles } from '@/constants/App.style';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Platform, View, Text, ScrollView } from 'react-native';
+import { Image, StyleSheet, Platform, View, Text, ScrollView, Alert } from 'react-native';
 
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 
@@ -49,8 +49,22 @@ export default function HomeScreen() {
     updatedList[todoIndex] = updatedTodo
     setTodoLIst(updatedList)
   }
+  const deleteTodo = (todo:Todo)=>{
+      Alert.alert("Suppression", "Supprimer cette tâche ?",[
+        {
+          text:"Supprimer",
+          style:"destructive",
+          onPress:()=>{
+              setTodoLIst(todoList.filter(elm=>elm.id !== todo.id))
+          }
+        },{
+          text:"Annuler",
+          style:"cancel"
+        }
+      ])
+  }
   const renderTodo = () => {
-    return getFilteredList().map((todo) => <View key={todo.id} style={styles.cardTodo}><Card onPress={updateTodo} todo={todo} /></View>)
+    return getFilteredList().map((todo) => <View key={todo.id} style={styles.cardTodo}><Card onLongPress={deleteTodo} onPress={updateTodo} todo={todo} /></View>)
   }
   return (
     <>
