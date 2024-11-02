@@ -1,7 +1,7 @@
 import React from 'react'
 import { style } from './Card.style'
 import checkImage from "@/assets/images/check.png"
-import { Text, TextInputProps, TouchableOpacity } from 'react-native'
+import { Image, Text, TextInputProps, TouchableOpacity } from 'react-native'
 
 type Todo = {
     id:number,
@@ -14,8 +14,9 @@ interface todoProps extends TextInputProps {
 }
 function Card({todo}:todoProps) {
   return (
-    <TouchableOpacity>
-        <Text>{todo.title}</Text>
+    <TouchableOpacity style={style.card}>
+        <Text style={style.text}>{todo.title}</Text>
+        <Image style={style.img} source={checkImage}/>
     </TouchableOpacity>
   )
 }

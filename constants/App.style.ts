@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
       
     },
     body:{
-        flex:5
+        flex:4
        
     },
     footer:{
