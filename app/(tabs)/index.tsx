@@ -3,12 +3,13 @@ import Card from '@/components/Card/Card';
 import Header from '@/components/Header';
 import TabMenu from '@/components/TabMenu/TabMenu';
 import { styles } from '@/constants/App.style';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dialog from "react-native-dialog"
 import { Image, StyleSheet, Platform, View, Text, ScrollView, Alert } from 'react-native';
 import uuid from "react-native-uuid"
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
-
+import AsyncStorage from "@react-native-async-storage/async-storage"
+let isFirstRender = true
 export default function HomeScreen() {
   type Todo = {
     id: string ,
@@ -20,6 +21,7 @@ export default function HomeScreen() {
   const [todoList, setTodoLIst] = useState<Todo[]>([])
   const [isAddTodo,setIsAddTodo] = useState<boolean>(false)
   const [todo,setTodo]=useState<string>("")
+  
   const getFilteredList =()=>{
       switch(selectMenu){
         case"all":
@@ -31,7 +33,18 @@ export default function HomeScreen() {
         default :return []
       }
   }
+  useEffect(()=>{
+      loadTodo()
+      console.log("load")
+  },[])
+  useEffect(()=>{
+    if(!isFirstRender){
+      saveTodo()
+      console.log("save")
+    }
 
+    else isFirstRender = false
+  },[todoList])
   const updateTodo = (todo: Todo) => {
     const updatedTodo = {
       ...todo,
@@ -70,6 +83,23 @@ export default function HomeScreen() {
       }
       setTodoLIst([...todoList,newTodo])
       setIsAddTodo(false)
+  }
+  const saveTodo = async ()=>{
+    try {
+      await AsyncStorage.setItem("@todoList",JSON.stringify(todoList))
+    } catch (error) {
+        alert("Erreur " + error)
+    }
+  }
+  const loadTodo = async ()=>{
+    try {
+        const data = await AsyncStorage.getItem("@todoList")
+        if(data !== null){
+          setTodoLIst(JSON.parse(data))
+        }
+    } catch (error) {
+        alert("Erreur "  + error)
+    }
   }
   return (
     <>
